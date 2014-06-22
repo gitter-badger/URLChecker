@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - List to check-->
+        <!--List Table View Controller - List to check-->
         <scene sceneID="GTe-9l-lMJ">
             <objects>
-                <tableViewController id="uH5-eX-TsU" sceneMemberID="viewController">
+                <tableViewController id="uH5-eX-TsU" customClass="ListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="m45-O8-0Ca">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,6 +55,9 @@
                                     <segment title="One"/>
                                     <segment title="Many"/>
                                 </segments>
+                                <connections>
+                                    <action selector="typeSegmentedControlValueChanged:" destination="JaH-AM-gJh" eventType="valueChanged" id="dh8-L6-yL4"/>
+                                </connections>
                             </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="avg-Ay-7VL">
                                 <rect key="frame" x="20" y="114" width="280" height="30"/>
@@ -77,16 +80,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add new" id="1mh-fO-yW3">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7Jb-iw-0kW"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7Jb-iw-0kW">
+                            <connections>
+                                <segue destination="ioP-uC-Lfg" kind="unwind" unwindAction="unwindToList:" id="k7E-FA-V7C"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="regexpLabel" destination="L7c-20-kHy" id="SLh-Dn-ljb"/>
                         <outlet property="regexpTextView" destination="3pg-uh-5QR" id="KLu-vf-Kdg"/>
-                        <outlet property="typeSegmentedControl" destination="rpg-zI-V8q" id="E0K-uF-Mej"/>
                         <outlet property="urlTextField" destination="avg-Ay-7VL" id="G2e-df-zAZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMG-fz-ual" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ioP-uC-Lfg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2217" y="205"/>
         </scene>
