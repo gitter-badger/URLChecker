@@ -107,6 +107,8 @@ import UIKit
     @IBAction func unwindToList(segue: UIStoryboardSegue)
     {
         
+        let source: AddNewViewController = segue.sourceViewController as AddNewViewController
+        println(segue.identifier)
     }
 
 }

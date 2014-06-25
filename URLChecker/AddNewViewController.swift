@@ -59,13 +59,28 @@ class AddNewViewController: UIViewController {
         }
     }
 
-    /*
+    @IBAction func saveAction(sender: UIBarButtonItem) {
+        
+        let regexp = NSRegularExpression.regularExpressionWithPattern("https?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
+        let matches = regexp.matchesInString(urlTextField.text, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, urlTextField.text.utf16count)) as Array<NSTextCheckingResult>
+        if matches.count > 0
+        {
+            performSegueWithIdentifier("uwnind", sender: sender)
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Error", message: "Enter valid URL address", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
     // #pragma mark - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
     }
-    */
 }

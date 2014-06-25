@@ -82,7 +82,7 @@
                     <navigationItem key="navigationItem" title="Add new" id="1mh-fO-yW3">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="7Jb-iw-0kW">
                             <connections>
-                                <segue destination="ioP-uC-Lfg" kind="unwind" unwindAction="unwindToList:" id="k7E-FA-V7C"/>
+                                <action selector="saveAction:" destination="JaH-AM-gJh" id="11f-Wh-5ma"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -90,10 +90,11 @@
                         <outlet property="regexpLabel" destination="L7c-20-kHy" id="SLh-Dn-ljb"/>
                         <outlet property="regexpTextView" destination="3pg-uh-5QR" id="KLu-vf-Kdg"/>
                         <outlet property="urlTextField" destination="avg-Ay-7VL" id="G2e-df-zAZ"/>
+                        <segue destination="4Bx-VB-teS" kind="unwind" identifier="uwnind" unwindAction="unwindToList:" id="Ok9-Xt-3Jr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMG-fz-ual" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ioP-uC-Lfg" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="4Bx-VB-teS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2217" y="205"/>
         </scene>
