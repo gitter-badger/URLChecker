@@ -10,6 +10,9 @@ import UIKit
 
 @objc(ListTableViewController) class ListTableViewController: UITableViewController {
 
+    var urlItems: [URLItem] = []
+    @IBOutlet var urlsTable: UITableView
+    
     init(style: UITableViewStyle) {
         super.init(style: style)
         // Custom initialization
@@ -40,24 +43,24 @@ import UIKit
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return urlItems.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath?) -> UITableViewCell? {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView!.dequeueReusableCellWithIdentifier("urlCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
+        cell.textLabel.text = urlItems[indexPath!.row].url
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -106,9 +109,13 @@ import UIKit
     
     @IBAction func unwindToList(segue: UIStoryboardSegue)
     {
-        
         let source: AddNewViewController = segue.sourceViewController as AddNewViewController
-        println(segue.identifier)
+        for(index, element) in enumerate(source.urlItemsToAdd) {
+            urlItems.append(element)
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.urlsTable.reloadData()
+        })
     }
 
 }

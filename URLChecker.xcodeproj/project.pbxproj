@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20B8D06196C0FA300D74347 /* URLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B8D05196C0FA300D74347 /* URLItem.swift */; };
 		B2AEFD721955C36D004B238E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2AEFD711955C36D004B238E /* Main.storyboard */; };
 		B2AEFD741955CF3B004B238E /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AEFD731955CF3B004B238E /* AddNewViewController.swift */; };
 		B2BF7F2719570D7800742990 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BF7F2619570D7800742990 /* ListTableViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B20B8D05196C0FA300D74347 /* URLItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLItem.swift; sourceTree = "<group>"; };
 		B2AEFD711955C36D004B238E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B2AEFD731955CF3B004B238E /* AddNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
 		B2BF7F2619570D7800742990 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				B2AEFD731955CF3B004B238E /* AddNewViewController.swift */,
 				B2BF7F2619570D7800742990 /* ListTableViewController.swift */,
 				B2BF7F2819570FA300742990 /* ListTableViewController.h */,
+				B20B8D05196C0FA300D74347 /* URLItem.swift */,
 				B2D0CF1619535D2A0062C6FC /* Images.xcassets */,
 				B2D0CF1219535D2A0062C6FC /* Supporting Files */,
 			);
@@ -215,6 +218,7 @@
 			files = (
 				B2BF7F2719570D7800742990 /* ListTableViewController.swift in Sources */,
 				B2D0CF1519535D2A0062C6FC /* AppDelegate.swift in Sources */,
+				B20B8D06196C0FA300D74347 /* URLItem.swift in Sources */,
 				B2AEFD741955CF3B004B238E /* AddNewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,7 +326,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = URLChecker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -335,7 +339,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = URLChecker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

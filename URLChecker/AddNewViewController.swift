@@ -10,10 +10,14 @@ import UIKit
 
 class AddNewViewController: UIViewController {
 
+    
+    var urlItemsToAdd : [URLItem] = []
+    
     //Referencing Outlets
     @IBOutlet var regexpLabel: UILabel
     @IBOutlet var regexpTextView: UITextView
     @IBOutlet var urlTextField: UITextField
+    @IBOutlet var switchSegment: UISegmentedControl
     
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -81,6 +85,18 @@ class AddNewViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        
+        if switchSegment.selectedSegmentIndex == 0 {
+            
+            let urlItem = URLItem()
+            urlItem.url = urlTextField.text
+            if regexpTextView.text.utf16count > 0 {
+                urlItem.regExp = regexpTextView.text
+            }
+            urlItemsToAdd.append(urlItem)
+        }
+        else
+        {
+            
+        }
     }
 }
