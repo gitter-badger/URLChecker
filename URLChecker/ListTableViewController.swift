@@ -11,7 +11,7 @@ import UIKit
 @objc(ListTableViewController) class ListTableViewController: UITableViewController {
 
     var urlItems: [URLItem] = []
-    @IBOutlet var urlsTable: UITableView
+    @IBOutlet var urlsTable: UITableView?
     
     init(style: UITableViewStyle) {
         super.init(style: style)
@@ -114,7 +114,7 @@ import UIKit
             urlItems.append(element)
         }
         dispatch_async(dispatch_get_main_queue(), {
-            self.urlsTable.reloadData()
+            self.urlsTable!.reloadData()
         })
     }
 
