@@ -14,17 +14,17 @@ class AddNewViewController: UIViewController {
     var urlItemsToAdd : [URLItem] = []
     
     //Referencing Outlets
-    @IBOutlet var regexpLabel: UILabel?
-    @IBOutlet var regexpTextView: UITextView?
-    @IBOutlet var urlTextField: UITextField?
-    @IBOutlet var switchSegment: UISegmentedControl?
+    @IBOutlet weak var regexpLabel: UILabel!
+    @IBOutlet weak var regexpTextView: UITextView!
+    @IBOutlet weak var urlTextField: UITextField!
+    @IBOutlet weak var switchSegment: UISegmentedControl!
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         // Custom initialization
     }
     
-    init(coder aDecoder: NSCoder!)
+    required init(coder aDecoder: NSCoder!)
     {
         super.init(coder: aDecoder)
     }
@@ -41,32 +41,32 @@ class AddNewViewController: UIViewController {
     }
     
     func setupControl() {
-        regexpTextView!.layer.borderWidth = 0.1
-        regexpTextView!.layer.cornerRadius = 8
-        regexpTextView!.layer.borderColor = UIColor.grayColor().CGColor
+        regexpTextView.layer.borderWidth = 0.1
+        regexpTextView.layer.cornerRadius = 8
+        regexpTextView.layer.borderColor = UIColor.grayColor().CGColor
     }
     
     @IBAction func typeSegmentedControlValueChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            urlTextField!.placeholder = "Enter URL"
-            regexpLabel!.hidden = false
-            regexpTextView!.hidden = false
+            urlTextField.placeholder = "Enter URL"
+            regexpLabel.hidden = false
+            regexpTextView.hidden = false
         case 1:
-            urlTextField!.placeholder = "Enter URL from download data"
-            regexpLabel!.hidden = true
-            regexpTextView!.hidden = true
+            urlTextField.placeholder = "Enter URL from download data"
+            regexpLabel.hidden = true
+            regexpTextView.hidden = true
         default:
-            urlTextField!.placeholder = "Enter URL"
-            regexpLabel!.hidden = false
-            regexpTextView!.hidden = false
+            urlTextField.placeholder = "Enter URL"
+            regexpLabel.hidden = false
+            regexpTextView.hidden = false
         }
     }
 
     @IBAction func saveAction(sender: UIBarButtonItem) {
         
         let regexp = NSRegularExpression.regularExpressionWithPattern("https?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
-        let matches = regexp.matchesInString(urlTextField!.text, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, urlTextField!.text.utf16Count)) as Array<NSTextCheckingResult>
+        let matches = regexp.matchesInString(urlTextField.text, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, urlTextField.text.utf16Count)) as Array<NSTextCheckingResult>
         if matches.count > 0
         {
             performSegueWithIdentifier("uwnind", sender: sender)
@@ -89,8 +89,8 @@ class AddNewViewController: UIViewController {
             
             let urlItem = URLItem()
             urlItem.url = urlTextField!.text
-            if regexpTextView!.text.utf16Count > 0 {
-                urlItem.regExp = regexpTextView!.text
+            if regexpTextView.text.utf16Count > 0 {
+                urlItem.regExp = regexpTextView.text
             }
             urlItemsToAdd.append(urlItem)
         }

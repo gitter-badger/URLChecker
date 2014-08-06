@@ -11,14 +11,14 @@ import UIKit
 @objc(ListTableViewController) class ListTableViewController: UITableViewController {
 
     var urlItems: [URLItem] = []
-    @IBOutlet var urlsTable: UITableView?
+    @IBOutlet weak var urlsTable: UITableView!
     
-    init(style: UITableViewStyle) {
+    override init(style: UITableViewStyle) {
         super.init(style: style)
         // Custom initialization
     }
     
-    init(coder aDecoder: NSCoder!)
+    required init(coder aDecoder: NSCoder!)
     {
         super.init(coder: aDecoder)
     }
@@ -114,7 +114,7 @@ import UIKit
             urlItems.append(element)
         }
         dispatch_async(dispatch_get_main_queue(), {
-            self.urlsTable!.reloadData()
+            self.urlsTable.reloadData()
         })
     }
 
