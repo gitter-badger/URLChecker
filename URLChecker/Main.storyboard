@@ -56,6 +56,9 @@
                                     <segment title="One"/>
                                     <segment title="Many"/>
                                 </segments>
+                                <connections>
+                                    <action selector="typeSegmentedControlValueChanged:" destination="kXz-4O-yxq" eventType="valueChanged" id="SCc-q0-Uuf"/>
+                                </connections>
                             </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ojQ-Oe-Z7b">
                                 <rect key="frame" x="18" y="122" width="564" height="30"/>
@@ -104,7 +107,9 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="regexpLabel" destination="ZyK-M4-Fp7" id="mny-SV-xSU"/>
                         <outlet property="regexpTextView" destination="rWD-2n-cWB" id="gUa-Kr-2p4"/>
+                        <outlet property="urlTextField" destination="ojQ-Oe-Z7b" id="QY1-ge-LrE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SpI-lf-ua2" userLabel="First Responder" sceneMemberID="firstResponder"/>
