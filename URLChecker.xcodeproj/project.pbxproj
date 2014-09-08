@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20D06EE19BE23DC00817E98 /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20D06ED19BE23DC00817E98 /* AddNewViewController.swift */; };
 		B21F21BC19BA10BC00A16A53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21F21BB19BA10BC00A16A53 /* AppDelegate.swift */; };
 		B21F21C319BA10BC00A16A53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B21F21C219BA10BC00A16A53 /* Images.xcassets */; };
 		B21F21CF19BA10BC00A16A53 /* URLCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21F21CE19BA10BC00A16A53 /* URLCheckerTests.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B20D06ED19BE23DC00817E98 /* AddNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
 		B21F21B619BA10BC00A16A53 /* URLChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URLChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B21F21BA19BA10BC00A16A53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B21F21BB19BA10BC00A16A53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,8 +77,9 @@
 			children = (
 				B21F21BB19BA10BC00A16A53 /* AppDelegate.swift */,
 				B21F21C219BA10BC00A16A53 /* Images.xcassets */,
-				B21F21B919BA10BC00A16A53 /* Supporting Files */,
 				B294FD4919BA18EA00AD03C5 /* Main.storyboard */,
+				B20D06ED19BE23DC00817E98 /* AddNewViewController.swift */,
+				B21F21B919BA10BC00A16A53 /* Supporting Files */,
 			);
 			path = URLChecker;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B21F21BC19BA10BC00A16A53 /* AppDelegate.swift in Sources */,
+				B20D06EE19BE23DC00817E98 /* AddNewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
