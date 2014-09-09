@@ -76,9 +76,9 @@
 			isa = PBXGroup;
 			children = (
 				B21F21BB19BA10BC00A16A53 /* AppDelegate.swift */,
-				B21F21C219BA10BC00A16A53 /* Images.xcassets */,
 				B294FD4919BA18EA00AD03C5 /* Main.storyboard */,
 				B20D06ED19BE23DC00817E98 /* AddNewViewController.swift */,
+				B21F21C219BA10BC00A16A53 /* Images.xcassets */,
 				B21F21B919BA10BC00A16A53 /* Supporting Files */,
 			);
 			path = URLChecker;
