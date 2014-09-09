@@ -2,10 +2,11 @@
 //  URLCheckerTests.swift
 //  URLCheckerTests
 //
-//  Created by Grzegorz Synowiec on 19.06.2014.
+//  Created by Grzegorz Synowiec on 05.09.2014.
 //  Copyright (c) 2014 Grzegorz Synowiec. All rights reserved.
 //
 
+import UIKit
 import XCTest
 
 class URLCheckerTests: XCTestCase {
