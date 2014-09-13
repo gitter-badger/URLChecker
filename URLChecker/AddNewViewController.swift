@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AddNewViewController: UIViewController {
     
@@ -59,7 +60,32 @@ class AddNewViewController: UIViewController {
         
         if matches > 0
         {
-            performSegueWithIdentifier("unwind", sender: sender)
+            if switchSegment.selectedSegmentIndex == 0 {
+                
+                let urlItem = URLItem()
+                urlItem.url = urlTextField.text
+                if regexpTextView.text.utf16Count > 0 {
+                    urlItem.regExp = regexpTextView!.text
+                }
+                urlItemsToAdd.append(urlItem)
+                performSegueWithIdentifier("unwind", sender: sender)
+            }
+            else
+            {
+                Alamofire.request(.GET, urlTextField.text, parameters: nil).response({ (_, _, data, _) in
+                    var err: NSError?
+                    var jsonResult = NSJSONSerialization.JSONObjectWithData(data as NSData, options: NSJSONReadingOptions.MutableContainers, error: &err) as  NSDictionary
+                    let allResults:NSArray = jsonResult["urls"] as NSArray
+                    
+                    for element in allResults {
+                        let urlItem = URLItem()
+                        urlItem.url = element["url"] as String
+                        urlItem.regExp = element["regexp"] as? String
+                        self.urlItemsToAdd.append(urlItem)
+                    }
+                    self.performSegueWithIdentifier("unwind", sender: sender)
+                })
+            }
         }
         else
         {
@@ -70,26 +96,14 @@ class AddNewViewController: UIViewController {
     }
     
     
+    /*
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if switchSegment.selectedSegmentIndex == 0 {
-            
-            let urlItem = URLItem()
-            urlItem.url = urlTextField.text
-            if regexpTextView.text.utf16Count > 0 {
-                urlItem.regExp = regexpTextView!.text
-            }
-            urlItemsToAdd.append(urlItem)
-        }
-        else
-        {
-            
-        }
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
     }
-    
+    */
     
 }
