@@ -11,6 +11,8 @@
 		B21F21BC19BA10BC00A16A53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21F21BB19BA10BC00A16A53 /* AppDelegate.swift */; };
 		B21F21C319BA10BC00A16A53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B21F21C219BA10BC00A16A53 /* Images.xcassets */; };
 		B21F21CF19BA10BC00A16A53 /* URLCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21F21CE19BA10BC00A16A53 /* URLCheckerTests.swift */; };
+		B267B15819C50FFA00481F30 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B265F07719C1AE5900FF67EF /* Alamofire.framework */; };
+		B267B15919C50FFA00481F30 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B265F07719C1AE5900FF67EF /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B27EFB8419C48104002FA21E /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EFB8319C48104002FA21E /* ListTableViewController.swift */; };
 		B27EFB8719C490DA002FA21E /* URLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EFB8619C490DA002FA21E /* URLItem.swift */; };
 		B294FD4A19BA18EA00AD03C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B294FD4919BA18EA00AD03C5 /* Main.storyboard */; };
@@ -46,7 +48,28 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = Alamofire;
 		};
+		B267B15A19C50FFA00481F30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B265F07119C1AE5900FF67EF /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = Alamofire;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B267B15C19C50FFA00481F30 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B267B15919C50FFA00481F30 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B20D06ED19BE23DC00817E98 /* AddNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B267B15819C50FFA00481F30 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,11 +184,13 @@
 				B21F21B219BA10BC00A16A53 /* Sources */,
 				B21F21B319BA10BC00A16A53 /* Frameworks */,
 				B21F21B419BA10BC00A16A53 /* Resources */,
+				B267B15C19C50FFA00481F30 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B265F07B19C1AE8500FF67EF /* PBXTargetDependency */,
+				B267B15B19C50FFA00481F30 /* PBXTargetDependency */,
 			);
 			name = URLChecker;
 			productName = URLChecker;
@@ -200,6 +226,7 @@
 				TargetAttributes = {
 					B21F21B519BA10BC00A16A53 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = B6J8YBA6P4;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -307,6 +334,11 @@
 			name = Alamofire;
 			targetProxy = B265F07A19C1AE8500FF67EF /* PBXContainerItemProxy */;
 		};
+		B267B15B19C50FFA00481F30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			targetProxy = B267B15A19C50FFA00481F30 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -392,6 +424,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = URLChecker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -403,6 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = URLChecker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
