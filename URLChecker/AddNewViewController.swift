@@ -10,9 +10,12 @@ import UIKit
 
 class AddNewViewController: UIViewController {
     
+    var urlItemsToAdd : [URLItem] = []
+    
     @IBOutlet weak var regexpTextView: UITextView!
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var regexpLabel: UILabel!
+    @IBOutlet weak var switchSegment: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +53,43 @@ class AddNewViewController: UIViewController {
         }
     }
     
-    /*
+    @IBAction func saveAction(sender: UIBarButtonItem) {
+        let regexp = NSRegularExpression.regularExpressionWithPattern("^https?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
+        let matches = regexp?.numberOfMatchesInString(urlTextField.text, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, urlTextField.text.utf16Count))
+        
+        if matches > 0
+        {
+            performSegueWithIdentifier("unwind", sender: sender)
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Error", message: "Enter valid URL address", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if switchSegment.selectedSegmentIndex == 0 {
+            
+            let urlItem = URLItem()
+            urlItem.url = urlTextField.text
+            if regexpTextView.text.utf16Count > 0 {
+                urlItem.regExp = regexpTextView!.text
+            }
+            urlItemsToAdd.append(urlItem)
+        }
+        else
+        {
+            
+        }
     }
-    */
+    
     
 }
