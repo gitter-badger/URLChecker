@@ -55,10 +55,8 @@ class AddNewViewController: UIViewController {
     }
     
     @IBAction func saveAction(sender: UIBarButtonItem) {
-        let regexp = NSRegularExpression.regularExpressionWithPattern("^https?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
-        let matches = regexp?.numberOfMatchesInString(urlTextField.text, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, urlTextField.text.utf16Count))
         
-        if matches > 0
+        if Tools.ValidURL(urlTextField.text)
         {
             if switchSegment.selectedSegmentIndex == 0 {
                 
