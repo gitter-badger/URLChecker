@@ -8,14 +8,21 @@
 
 import UIKit
 
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UITableViewController, ToolsProtocol {
     
     var urlItems: [URLItem] = []
+    
+    var timer:NSTimer = NSTimer()
     
     @IBOutlet var urlsTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (!timer.valid) {
+            let aSelector : Selector = "checking"
+            timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: aSelector, userInfo: nil, repeats: true)
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -50,6 +57,7 @@ class ListTableViewController: UITableViewController {
         // Configure the cell...
         
         cell.textLabel!.text = urlItems[indexPath.row].url
+        cell.detailTextLabel!.text = urlItems[indexPath.row].elapsedTimeCheck == nil ? "" : "Elapsed Time: \(urlItems[indexPath.row].elapsedTimeCheck!) sec"
         
         return cell
     }
@@ -108,6 +116,20 @@ class ListTableViewController: UITableViewController {
         }
         dispatch_async(dispatch_get_main_queue(), {
             self.urlsTable.reloadData()
+        })
+    }
+    
+    func checking() {
+        
+        for (indexAt ,element) in enumerate(urlItems) {
+            Tools.CheckURL(element, index:indexAt, delegate: self)
+        }
+    }
+    
+    func reladTableRow(index: Int) {
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.urlsTable.reloadRowsAtIndexPaths(NSArray(object: NSIndexPath(forItem: index, inSection: 0)), withRowAnimation: UITableViewRowAnimation.Fade)
         })
     }
     

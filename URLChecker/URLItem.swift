@@ -12,6 +12,7 @@ class URLItem {
     
     var url: String = ""
     var regExp: String?
+    var elapsedTimeCheck: NSTimeInterval?
     
     init()
     {

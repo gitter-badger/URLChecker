@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         return true
     }
     
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -35,12 +37,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        let controller =  (self.window?.rootViewController as UINavigationController).childViewControllers[0] as ListTableViewController
+        dispatch_async(dispatch_get_main_queue(), {
+            controller.urlsTable.reloadData()
+        })
     }
     
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        let controller =  (self.window?.rootViewController as UINavigationController).childViewControllers[0] as ListTableViewController
+        
+        if controller.urlItems.count > 0
+        {
+            for element in controller.urlItems {
+                Tools.CheckURL(element, index:nil, delegate:nil)
+            }
+            completionHandler(.NewData)
+        }
+        else {
+            completionHandler(.NoData)
+        }
+    }
     
 }
 
