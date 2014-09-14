@@ -29,13 +29,12 @@ class Tools {
             
             if urlItem.responseCode! == 200 {
                 urlItem.check_correct++
+                if urlItem.regExp != nil {
+                    urlItem.regexpStatus = self.ValidString(urlItem.regExp!, stringToCheck: responseString!)
+                }
             }
             else {
                 urlItem.check_negative++
-            }
-            
-            if urlItem.regExp != nil {
-                urlItem.regexpStatus = self.ValidString(urlItem.regExp!, stringToCheck: responseString!)
             }
             
             if delegate != nil {
