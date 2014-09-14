@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if controller.urlItems.count > 0
         {
             for element in controller.urlItems {
-                Tools.CheckURL(element, index:nil, delegate:nil)
+                Tools.CheckURL(element)
             }
             completionHandler(.NewData)
         }

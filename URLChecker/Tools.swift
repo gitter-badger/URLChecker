@@ -9,10 +9,6 @@
 import UIKit
 import Alamofire
 
-protocol ToolsProtocol {
-    func reladTableRow(index: Int)
-}
-
 class Tools {
     
     class func ValidURL(URL: String) -> Bool {
@@ -20,7 +16,7 @@ class Tools {
         return self.ValidString("^https?://[a-z0-9\\-]+(?:\\.\\w+)+(?:/.*)?$", stringToCheck: URL)
     }
     
-    class func CheckURL(urlItem: URLItem, index: Int?, delegate: ToolsProtocol?) {
+    class func CheckURL(urlItem: URLItem) {
         let start = CACurrentMediaTime()
         Alamofire.request(.GET, urlItem.url, parameters: nil).responseString { (_, response, responseString, _)  in
             let stop = CACurrentMediaTime()
@@ -35,10 +31,6 @@ class Tools {
             }
             else {
                 urlItem.check_negative++
-            }
-            
-            if delegate != nil {
-                delegate!.reladTableRow(index!)
             }
         }
     }

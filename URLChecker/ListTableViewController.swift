@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListTableViewController: UITableViewController, ToolsProtocol {
+class ListTableViewController: UITableViewController {
     
     var urlItems: [URLItem] = []
     
@@ -59,6 +59,12 @@ class ListTableViewController: UITableViewController, ToolsProtocol {
         cell.textLabel!.text = urlItems[indexPath.row].url
         cell.detailTextLabel!.text = urlItems[indexPath.row].elapsedTimeCheck == nil ? "" : "Elapsed Time: \(urlItems[indexPath.row].elapsedTimeCheck!) sec"
         
+        if urlItems[indexPath.row].responseCode == 200 {
+            cell.backgroundColor = UIColor.greenColor()
+        }
+        else {
+            cell.backgroundColor = UIColor.redColor()
+        }
         return cell
     }
     
@@ -114,23 +120,21 @@ class ListTableViewController: UITableViewController, ToolsProtocol {
         for(index, element) in enumerate(source.urlItemsToAdd) {
             urlItems.append(element)
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            self.urlsTable.reloadData()
-        })
+        self.reladTableRows()
     }
     
     func checking() {
         
         for (indexAt ,element) in enumerate(urlItems) {
-            Tools.CheckURL(element, index:indexAt, delegate: self)
+            Tools.CheckURL(element)
         }
+        self.reladTableRows()
     }
     
-    func reladTableRow(index: Int) {
+    func reladTableRows() {
         
-        dispatch_async(dispatch_get_main_queue(), {
-            self.urlsTable.reloadRowsAtIndexPaths(NSArray(object: NSIndexPath(forItem: index, inSection: 0)), withRowAnimation: UITableViewRowAnimation.Fade)
-        })
+        self.refreshControl?.beginRefreshing()
+        self.urlsTable.reloadData()
+        self.refreshControl?.endRefreshing()
     }
-    
 }
