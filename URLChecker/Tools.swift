@@ -15,22 +15,38 @@ protocol ToolsProtocol {
 
 class Tools {
     
-    class func ValidURL(URL:String) -> Bool {
+    class func ValidURL(URL: String) -> Bool {
         
-        let regexp = NSRegularExpression.regularExpressionWithPattern("^https?://[a-z0-9\\-]+(?:\\.\\w+)+(?:/.*)?$", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
-        let matches = regexp?.numberOfMatchesInString(URL, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, URL.utf16Count))
-        return matches > 0
+        return self.ValidString("^https?://[a-z0-9\\-]+(?:\\.\\w+)+(?:/.*)?$", stringToCheck: URL)
     }
     
-    class func CheckURL(urlItem:URLItem, index:Int?, delegate:ToolsProtocol?)
-    {
+    class func CheckURL(urlItem: URLItem, index: Int?, delegate: ToolsProtocol?) {
         let start = CACurrentMediaTime()
-        Alamofire.request(.GET, urlItem.url, parameters: nil).response { (request, response, data, _)  in
+        Alamofire.request(.GET, urlItem.url, parameters: nil).responseString { (_, response, responseString, _)  in
             let stop = CACurrentMediaTime()
             urlItem.elapsedTimeCheck = stop - start
+            urlItem.responseCode = response?.statusCode
+            
+            if urlItem.responseCode! == 200 {
+                urlItem.check_correct++
+            }
+            else {
+                urlItem.check_negative++
+            }
+            
+            if urlItem.regExp != nil {
+                urlItem.regexpStatus = self.ValidString(urlItem.regExp!, stringToCheck: responseString!)
+            }
+            
             if delegate != nil {
                 delegate!.reladTableRow(index!)
             }
         }
+    }
+    
+    class func ValidString(regexpString: String, stringToCheck: String) -> Bool {
+        let regexp = NSRegularExpression.regularExpressionWithPattern(regexpString, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
+        let matches = regexp?.numberOfMatchesInString(stringToCheck, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, stringToCheck.utf16Count))
+        return matches > 0
     }
 }

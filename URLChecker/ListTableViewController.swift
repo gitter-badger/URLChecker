@@ -12,7 +12,7 @@ class ListTableViewController: UITableViewController, ToolsProtocol {
     
     var urlItems: [URLItem] = []
     
-    var timer:NSTimer = NSTimer()
+    var timer: NSTimer = NSTimer()
     
     @IBOutlet var urlsTable: UITableView!
     

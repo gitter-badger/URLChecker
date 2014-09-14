@@ -13,6 +13,10 @@ class URLItem {
     var url: String = ""
     var regExp: String?
     var elapsedTimeCheck: NSTimeInterval?
+    var responseCode: Int?
+    var regexpStatus: Bool?
+    var check_correct: Int = 0
+    var check_negative: Int = 0
     
     init()
     {
