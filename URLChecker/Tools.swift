@@ -16,23 +16,34 @@ class Tools {
         return self.ValidString("^https?://[a-z0-9\\-]+(?:\\.\\w+)+(?:/.*)?$", stringToCheck: URL)
     }
     
-    class func CheckURL(urlItem: URLItem) {
+    class func CheckURL(urlItem: URLItem)
+    {
         let start = CACurrentMediaTime()
-        Alamofire.request(.GET, urlItem.url, parameters: nil).responseString { (_, response, responseString, _)  in
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: urlItem.url), completionHandler: {data, response, error -> Void in
             let stop = CACurrentMediaTime()
-            urlItem.elapsedTimeCheck = stop - start
-            urlItem.responseCode = response?.statusCode
             
-            if urlItem.responseCode! == 200 {
-                urlItem.check_correct++
-                if urlItem.regExp != nil {
-                    urlItem.regexpStatus = self.ValidString(urlItem.regExp!, stringToCheck: responseString!)
+            if(error != nil) {
+                // If there is an error in the web request, print it to the console
+                println(error.localizedDescription)
+            } else
+            {
+                urlItem.elapsedTimeCheck = stop - start
+                urlItem.responseCode = (response as NSHTTPURLResponse).statusCode
+                
+                if urlItem.responseCode! == 200 {
+                    urlItem.check_correct++
+                    if urlItem.regExp != nil {
+                        urlItem.regexpStatus = self.ValidString(urlItem.regExp!, stringToCheck: NSString(data: data, encoding: NSUTF8StringEncoding))
+                    }
+                }
+                else {
+                    urlItem.check_negative++
                 }
             }
-            else {
-                urlItem.check_negative++
-            }
-        }
+            
+        })
+        task.resume()
     }
     
     class func ValidString(regexpString: String, stringToCheck: String) -> Bool {

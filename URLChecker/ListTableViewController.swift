@@ -56,7 +56,7 @@ class ListTableViewController: UITableViewController {
         
         // Configure the cell...
         
-        cell.textLabel!.text = urlItems[indexPath.row].url
+        cell.textLabel!.text = "\(urlItems[indexPath.row].url) \(urlItems[indexPath.row].check_correct) \(urlItems[indexPath.row].check_negative)"
         cell.detailTextLabel!.text = urlItems[indexPath.row].elapsedTimeCheck == nil ? "" : "Elapsed Time: \(urlItems[indexPath.row].elapsedTimeCheck!) sec"
         
         if urlItems[indexPath.row].responseCode == 200 {
