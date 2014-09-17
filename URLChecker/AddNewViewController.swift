@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class AddNewViewController: UIViewController {
     
@@ -70,19 +69,31 @@ class AddNewViewController: UIViewController {
             }
             else
             {
-                Alamofire.request(.GET, urlTextField.text, parameters: nil).response({ (_, _, data, _) in
-                    var err: NSError?
-                    var jsonResult = NSJSONSerialization.JSONObjectWithData(data as NSData, options: NSJSONReadingOptions.MutableContainers, error: &err) as  NSDictionary
-                    let allResults:NSArray = jsonResult["urls"] as NSArray
+                let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: self.urlTextField.text), completionHandler: {data, response, error -> Void in
                     
-                    for element in allResults {
-                        let urlItem = URLItem()
-                        urlItem.url = element["url"] as String
-                        urlItem.regExp = element["regexp"] as? String
-                        self.urlItemsToAdd.append(urlItem)
+                    if(error != nil) {
+                        // If there is an error in the web request, print it to the console
+                        println(error.localizedDescription)
+                        //notify error
+                    } else
+                    {
+                        var err: NSError?
+                        var jsonResult = NSJSONSerialization.JSONObjectWithData(data as NSData, options: NSJSONReadingOptions.MutableContainers, error: &err) as  NSDictionary
+                        let allResults:NSArray = jsonResult["urls"] as NSArray
+                        
+                        for element in allResults {
+                            let urlItem = URLItem()
+                            urlItem.url = element["url"] as String
+                            urlItem.regExp = element["regexp"] as? String
+                            self.urlItemsToAdd.append(urlItem)
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.performSegueWithIdentifier("unwind", sender: sender)
+                        })
                     }
-                    self.performSegueWithIdentifier("unwind", sender: sender)
                 })
+                task.resume()
             }
         }
         else
