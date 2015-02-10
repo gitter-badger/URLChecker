@@ -1,6 +1,8 @@
 URLChecker
 ==========
 
+[![Join the chat at https://gitter.im/Mikoj/URLChecker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Mikoj/URLChecker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A simple application to check URLs written in Swift
 
 License
